@@ -1,43 +1,46 @@
 package matlib;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Stack;
 
 /**
- * Created by shreyansh on 29/10/17.
- */
-
-/*
-    Creates a single variable function
+ * Creates a Function of a single variable 'x'
+ *
+ * @author shreyansh
  */
 public class Function extends Computable {
     Node root;
     HashMap<Character,Double> values;
-    /*
-    * The Format for an expression:-
-     * It follows BEMDAS rule.
-     * () Brackets
-     * * Multiplication - 1
-     * / Division - 2
-     * + Addition - 3
-     * - Subtraction - 7
-     * ^ Power - 4
-     * e constant e - 0
-     * ln() Log base e of the - 5
-     * x The variable - 6
-     * Numbers(constants), if fractional cannot start with a '.'. - 0
-    */
+
+    /**
+     * Generates a function with a given expression
+     *
+     * @param exp The expression. Only the following are allowed
+     *            ( ) . + / * - ^ 0 1 2 3 4 5 6 7 8 9 e x ln
+     *            e is the constant e
+     *            x is the independent variable in the function
+     *            ln signifies the natural log function
+     *            ^ is the power operator
+     *            Expression cannot start with -
+     *            Numbers may contain only digits and '.'
+     *            No other character is allowed in the input expression
+     * @throws InvalidExpressionFormatException
+     */
     public Function(String exp) throws InvalidExpressionFormatException {
         values=new HashMap<Character,Double>();
         exp=inToPost(exp);
         root= buildTree(exp);
     }
 
-    public double compute(){
-        return compute(0.0);
-    }
-
+    /**
+     * Method to compute the value of the function
+     * at a point
+     *
+     * @param x The point at which value needs to
+     *         be computed
+     * @return The value of the function at x
+     */
+    @Override
     public double compute(double x){
         return doEvaluate(root,x);
     }

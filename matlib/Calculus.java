@@ -1,10 +1,20 @@
 package matlib;
 
 /**
- * Created by shreyansh on 29/10/17.
+ * Class to perform simple Calculus operations
+ *
+ * @author shreyansh
  */
 public class Calculus{
-    //Calculates value of integration using Simpson's rule
+    /**
+     * Method to perform numerical integration by Simpson's rule
+     *
+     * @param expression The function which needs to be integrated
+     * @param from The lower limit of integration
+     * @param to The upper limit of integration
+     * @param <T> A subclass of Computable
+     * @return The value of the integration of the function over the limits
+     */
     public static <T extends Computable> double integrate(T expression,double from,double to){
         double n=200;
         double h= (to-from)/n;
@@ -21,6 +31,16 @@ public class Calculus{
         sum = sum + 4 * expression.compute(mid) + expression.compute(to);
         return sum * h/6;
     }
+
+    /**
+     * Function to compute the derivative at a point of a function
+     *
+     * @param expression The function to be differentiated
+     * @param point The point at which derivative is to be found
+     * @param <T> A subclass of Computable class
+     * @return The value of the slope at point
+     * @throws LimitDoesNotExistException
+     */
     public static <T extends Computable> double differentiate(T expression,double point)throws LimitDoesNotExistException{
         double ans=0.0;
         double epoch = 1.0/1e11;
@@ -36,6 +56,16 @@ public class Calculus{
             throw new LimitDoesNotExistException();
         return ans;
     }
+
+    /**
+     * Function to compute the limit of a function
+     *
+     * @param expression The function whose limit is to be found
+     * @param point The point at which limit needs to be found
+     * @param <T> A subclass of Computable class
+     * @return The limit at the specified point
+     * @throws LimitDoesNotExistException
+     */
     public static <T extends Computable> double limit(T expression, double point)throws LimitDoesNotExistException{
         double epoch = 1/1e15;
         double accuracy = 1/1e6;

@@ -1,9 +1,15 @@
 package matlib;
 
 /**
- * Created by shreyansh on 29/10/17.
+ * Exception raised when no limit exists for a function
+ *
+ * @author shreyansh
  */
 public class LimitDoesNotExistException extends Exception {
+    /**
+     * Used to display a custom exception message
+     * @return The Exception message
+     */
     public String toString(){
         return "Limit does not exist for this function";
     }
