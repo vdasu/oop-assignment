@@ -20,7 +20,6 @@ public class Combinatorics{
   * @param arr First parameter to <code>swap</code> method which is array of type <code>char[]</code>
   * @param i Second parameter to <code>swap</code> method is index of element to be swapped of type <code>int</code>
   * @param j Third parameter to <code>swap</code> method is index of element to be swapped of type <code>int</code>
-  * @return void Function returns void
   */ 
   private static void swap(char[] arr,int i,int j){
     char temp = arr[i];
@@ -71,8 +70,7 @@ public class Combinatorics{
   *
   * @param str First parameter to <code>previousPermutation</code> method which is a string
   * @return String Returns the lexicographically previous permutation of the string elements
-  * @throws InvalidNextPermutationException On absence of valid previous permutation
-  * @see InvalidNextPermutationException
+  * @throws InvalidPreviousPermutationException On absence of valid previous permutation
   */ 
   public static String previousPermutation(String str) throws InvalidPreviousPermutationException{
   	char[] charArray = str.toCharArray();

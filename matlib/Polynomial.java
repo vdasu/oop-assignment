@@ -145,7 +145,7 @@ public class Polynomial extends Computable
      *Multiplies given polnomial with the polnomial present in the class
      *@param p7 Polynomial object to be multiplied.
      *@return Product of this and p7
-     *@Exception InterruptedException
+     *@throws InterruptedException throws exception when thread error
      */
     public Polynomial multiply(Polynomial p7) throws InterruptedException
     {

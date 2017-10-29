@@ -24,7 +24,7 @@ public class Function extends Computable {
      *            Expression cannot start with -
      *            Numbers may contain only digits and '.'
      *            No other character is allowed in the input expression
-     * @throws InvalidExpressionFormatException
+     * @throws InvalidExpressionFormatException throws exception when expression is not formatted properly
      */
     public Function(String exp) throws InvalidExpressionFormatException {
         values=new HashMap<Character,Double>();

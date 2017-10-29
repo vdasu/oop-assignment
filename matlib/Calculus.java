@@ -39,7 +39,7 @@ public class Calculus{
      * @param point The point at which derivative is to be found
      * @param <T> A subclass of Computable class
      * @return The value of the slope at point
-     * @throws LimitDoesNotExistException
+     * @throws LimitDoesNotExistException Throws exception when derivative does not exist
      */
     public static <T extends Computable> double differentiate(T expression,double point)throws LimitDoesNotExistException{
         double ans=0.0;
@@ -64,7 +64,7 @@ public class Calculus{
      * @param point The point at which limit needs to be found
      * @param <T> A subclass of Computable class
      * @return The limit at the specified point
-     * @throws LimitDoesNotExistException
+     * @throws LimitDoesNotExistException Throws exception when limit does not exist
      */
     public static <T extends Computable> double limit(T expression, double point)throws LimitDoesNotExistException{
         double epoch = 1/1e15;
