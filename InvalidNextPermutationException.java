@@ -1,4 +1,4 @@
-package Matlib;
+package matlib;
 
 class InvalidNextPermutationException extends Exception{
 	public String toString(){

@@ -1,4 +1,4 @@
-package Matlib;
+package matlib;
 
 class NumberOutOfLimitsException extends Exception{
 	public String toString(){

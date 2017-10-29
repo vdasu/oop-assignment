@@ -1,4 +1,4 @@
-package Matlib;
+package matlib;
 
 import java.util.*;
 import java.math.*;

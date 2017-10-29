@@ -1,4 +1,4 @@
-package Matlib;
+package matlib;
 
 
 public class Complex {
