@@ -1,5 +1,7 @@
 package matlib;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Stack;
 
 /**
@@ -7,10 +9,11 @@ import java.util.Stack;
  */
 
 /*
-    Creates a single variable expression
+    Creates a single variable function
  */
-public class Expression extends Computable {
+public class Function extends Computable {
     Node root;
+    HashMap<Character,Double> values;
     /*
     * The Format for an expression:-
      * It follows BEMDAS rule.
@@ -25,7 +28,8 @@ public class Expression extends Computable {
      * x The variable - 6
      * Numbers(constants), if fractional cannot start with a '.'. - 0
     */
-    Expression(String exp) throws InvalidExpressionFormatException {
+    public Function(String exp) throws InvalidExpressionFormatException {
+        values=new HashMap<Character,Double>();
         exp=inToPost(exp);
         root= buildTree(exp);
     }
@@ -60,10 +64,10 @@ public class Expression extends Computable {
         }
         return ans;
     }
-    private static Node buildTree(String exp) throws InvalidExpressionFormatException{
+    private Node buildTree(String exp) throws InvalidExpressionFormatException{
         Stack<Node> tokens=new Stack<Node>();
         try {
-            for(int i=0;i>exp.length();i++){
+            for(int i=0;i<exp.length();i++){
                 boolean flag=false;
                 int type=-1;
                 char ch=exp.charAt(i);
@@ -78,27 +82,30 @@ public class Expression extends Computable {
                 else if(ch=='l'){
                     int last = exp.indexOf(')',i);
                     String ex = exp.substring(i+3,last);
-                    Expression texp=new Expression(ex);
+                    Function texp=new Function(ex);
                     Node temp=new Node(texp);
                     tokens.push(temp);
                     i=last;
                 }
-                else if(Character.isDigit(ch)){
-                    String number = "";
-                    int idx = i;
-                    while (idx < exp.length()) {
-                        char curr = exp.charAt(idx);
-                        if (curr >= '0' && ch <= '9')
-                            number += curr;
-                        else if (curr == '.')
-                            number += ".";
-                        else
-                            break;
-                        idx++;
-                    }
-                    i=idx;
-                    double d=Double.parseDouble(number);
+                else if(Character.isUpperCase(ch)){
+//                    String number = "";
+//                    int idx = i;
+//                    while (idx < exp.length()) {
+//                        char curr = exp.charAt(idx);
+//                        if (curr >= '0' && ch <= '9')
+//                            number += curr;
+//                        else if (curr == '.')
+//                            number += ".";
+//                        else
+//                            break;
+//                        idx++;
+//                    }
+//                    i=idx-1;
+//                    double d=Double.parseDouble(number);
+//                    Node temp=new Node(d,0);
+                    double d = values.get(ch);
                     Node temp=new Node(d,0);
+                    tokens.push(temp);
                 }
                 else if(ch=='*'){
                    flag=true;
@@ -141,7 +148,7 @@ public class Expression extends Computable {
         int type;
         Node left;
         Node right;
-        Expression sub;
+        Function sub;
         Node(double val,int type){
             this.val=val;
             this.type=type;
@@ -149,7 +156,7 @@ public class Expression extends Computable {
             right=null;
             sub=null;
         }
-        Node(Expression exp){
+        Node(Function exp){
             sub=exp;
             val=0.0;
             type=5;
@@ -158,6 +165,7 @@ public class Expression extends Computable {
     }
     private String inToPost(String infix)throws InvalidExpressionFormatException{
         Stack<Character> stack = new Stack<Character>();
+        char next='A';
         String postfix="";
         try {
             for (int i = 0; i < infix.length(); i++) {
@@ -196,8 +204,12 @@ public class Expression extends Computable {
                             break;
                         idx++;
                     }
-                    i=idx;
-                    postfix+=number;
+                    i=idx-1;
+                    values.put(Character.valueOf(next),Double.valueOf(number));
+                    postfix+=next;
+                    next++;
+                    if(next>'Z')
+                        throw new InvalidExpressionFormatException();
                 }
                 else{
                     int prec=getPrecedence(ch);
@@ -209,6 +221,8 @@ public class Expression extends Computable {
                     stack.push(ch);
                 }
             }
+            while (!stack.isEmpty())
+                postfix+=stack.pop();
         }catch (Exception e){
             throw new InvalidExpressionFormatException();
         }

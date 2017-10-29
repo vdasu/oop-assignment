@@ -19,7 +19,8 @@ public class assignment3test
 		da=a.addition(q,v);
 		Polynomial x=new Polynomial(da);
 		x.display();
-		da=a.multiply(v);
+		Polynomial test = new Polynomial(da);
+		da=test.multiply(v);
 		Polynomial st=new Polynomial(da);
 		st.display();
 
