@@ -1,25 +1,6 @@
 import java.util.*;
 import java.math.*;
 
-
-class NumberOutOfLimitsException extends Exception{
-	public String toString(){
-		return "Parameter out of bounds for function";
-	}
-}
-
-class InvalidNextPermutationException extends Exception{
-	public String toString(){
-		return "Next permutation does not exist";
-	}
-}
-
-class InvalidPreviousPermutationException extends Exception{
-	public String toString(){
-		return "Previous permutation does not exist";
-	}
-}
-
 public class Combinatorics{
   
   private static void swap(char[] arr,int i,int j){

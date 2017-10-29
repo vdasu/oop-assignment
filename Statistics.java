@@ -1,12 +1,6 @@
 import java.util.*;
 import java.math.*;
 
-class ArrayEmptyException extends Exception{
-  public String toString(){
-    return "Array length equals to 0";
-  }
-}
-
 public class Statistics{
 
   public static double mean(double[] arr) throws ArrayEmptyException{
