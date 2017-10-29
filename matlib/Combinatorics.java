@@ -3,14 +3,40 @@ package matlib;
 import java.util.*;
 import java.math.*;
 
+/**
+* <h1>Combinatorics Module</h1>
+* Combinatorics module is a part of the matlib package and provides functions for
+* basic combinatorics operations.
+*
+* @author  Vishnu Asutosh Dasu
+* @version 1.0
+* @since   2017-10-29
+*/
+
 public class Combinatorics{
-  
+
+  /**
+  * This helper method is used to swap two elements in a <code>char[]</code> array
+  *
+  * @param arr First parameter to <code>swap</code> method which is array of type <code>char[]</code>
+  * @param i Second parameter to <code>swap</code> method is index of element to be swapped of type <code>int</code>
+  * @param j Third parameter to <code>swap</code> method is index of element to be swapped of type <code>int</code>
+  * @return void Function returns void
+  */ 
   private static void swap(char[] arr,int i,int j){
     char temp = arr[i];
     arr[i] = arr[j];
     arr[j] = temp;
   }
 
+  /**
+  * This method is used to find the next permutation of a string of type <code>String</code>
+  *
+  * @param str First parameter to <code>nextPermutation</code> method which is a string
+  * @return String Returns the lexicographically next permutation of the string elements
+  * @throws InvalidNextPermutationException On absence of valid next permutation
+  * @see InvalidNextPermutationException
+  */ 
   public static String nextPermutation(String str) throws InvalidNextPermutationException{
     char[] charArray = str.toCharArray();
     int i = charArray.length - 1;
@@ -41,6 +67,14 @@ public class Combinatorics{
     return new String(charArray);
   }
 
+  /**
+  * This method is used to find the previous permutation of a string of type <code>String</code>
+  *
+  * @param str First parameter to <code>previousPermutation</code> method which is a string
+  * @return String Returns the lexicographically previous permutation of the string elements
+  * @throws InvalidNextPermutationException On absence of valid previous permutation
+  * @see InvalidNextPermutationException
+  */ 
   public static String previousPermutation(String str) throws InvalidPreviousPermutationException{
   	char[] charArray = str.toCharArray();
   	int len = charArray.length - 1;
@@ -68,6 +102,14 @@ public class Combinatorics{
   	return ans;
   }
 
+  /**
+  * This method is used to find the factorial of an integer
+  *
+  * @param n First parameter to <code>factorial</code> method which is of type <code>int</code>
+  * @return long Returns the factorial of the input
+  * @throws NumberOutOfLimitsException On number out of valid range
+  * @see NumberOutOfLimitsException
+  */ 
   public static long factorial(int n) throws NumberOutOfLimitsException{
   	if(n<0){
   		throw new NumberOutOfLimitsException();
@@ -78,7 +120,15 @@ public class Combinatorics{
       return n*factorial(n-1);
     }
   }
- 
+
+  /**
+  * This method is used to find the factorial of a BigInteger
+  *
+  * @param n First parameter to <code>factorialBig</code> method which is of type <code>BigInteger</code>
+  * @return BigInteger Returns the factorial of the input
+  * @throws NumberOutOfLimitsException On number out of valid range
+  * @see NumberOutOfLimitsException
+  */ 
   public static BigInteger factorialBig(BigInteger n) throws NumberOutOfLimitsException{
   	if(n.compareTo(BigInteger.ZERO)<0){
   		throw new NumberOutOfLimitsException();
@@ -90,6 +140,15 @@ public class Combinatorics{
     }
   }
 
+  /**
+  * This method is used to find the nCr of the inputs of type int
+  *
+  * @param n First parameter to <code>choose</code> method which is of type <code>int</code>
+  * @param r Second parameter to <code>choose</code> method which is of type <code>int</code>
+  * @return long Returns the nCr of the inputs
+  * @throws NumberOutOfLimitsException On number out of valid range
+  * @see NumberOutOfLimitsException
+  */ 
   public static long choose(int n,int r) throws NumberOutOfLimitsException{
   	if(r<0||n<0){
   		throw new NumberOutOfLimitsException();
@@ -101,6 +160,15 @@ public class Combinatorics{
     }
   }
 
+  /**
+  * This method is used to find the nPr of the inputs of type int
+  *
+  * @param n First parameter to <code>chooseUnordered</code> method which is of type <code>int</code>
+  * @param r Second parameter to <code>chooseUnordered</code> method which is of type <code>int</code>
+  * @return long Returns the nPr of the inputs
+  * @throws NumberOutOfLimitsException On number out of valid range
+  * @see NumberOutOfLimitsException
+  */ 
   public static long chooseUnordered(int n,int r) throws NumberOutOfLimitsException{
   	if(r<0||n<0){
   		throw new NumberOutOfLimitsException();
@@ -108,6 +176,15 @@ public class Combinatorics{
   	return  choose(n,r)*factorial(r);
   }
 
+  /**
+  * This method is used to find the nCr of the inputs of type BigInteger
+  *
+  * @param n First parameter to <code>chooseBig</code> method which is of type <code>BigInteger</code>
+  * @param r Second parameter to <code>chooseBig</code> method which is of type <code>BigInteger</code>
+  * @return BigInteger Returns the nCr of the inputs
+  * @throws NumberOutOfLimitsException On number out of valid range
+  * @see NumberOutOfLimitsException
+  */ 
   public static BigInteger chooseBig(BigInteger n, BigInteger r) throws NumberOutOfLimitsException{
   	if(r.compareTo(BigInteger.ZERO)<0||n.compareTo(BigInteger.ZERO)<0){
   		throw new NumberOutOfLimitsException();
@@ -120,11 +197,19 @@ public class Combinatorics{
   	}
   }
 
+   /**
+  * This method is used to find the nPr of the inputs of type BigInteger
+  *
+  * @param n First parameter to <code>chooseUnorderedBig</code> method which is of type <code>BigInteger</code>
+  * @param r Second parameter to <code>chooseUnorderedBig</code> method which is of type <code>BigInteger</code>
+  * @return BigInteger Returns the nCr of the inputs
+  * @throws NumberOutOfLimitsException On number out of valid range
+  * @see NumberOutOfLimitsException
+  */ 
   public static BigInteger chooseUnorderedBig(BigInteger n,BigInteger r) throws NumberOutOfLimitsException{
   	if(r.compareTo(BigInteger.ZERO)<0||n.compareTo(BigInteger.ZERO)<0){
   		throw new NumberOutOfLimitsException();
   	}
   	return chooseBig(n,r).multiply(factorialBig(r));
   }
-
 }
